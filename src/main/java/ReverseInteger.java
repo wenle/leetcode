@@ -41,10 +41,26 @@ public class ReverseInteger {
         return num;
     }
 
+    public int reverse(int x) {
+
+        int result = 0;
+        while(x != 0) {
+
+            int tail = x % 10;
+            int temp = result * 10 + tail;
+            if((temp - tail) / 10 != result) {
+                return 0;
+            }
+            result = temp;
+            x = x/10;
+        }
+        return result;
+    }
+
     public void printResult(int x) {
 
         System.out.println("INPUT: " + x);
-        System.out.println("OUTPUT: " + this.reverseBad(x));
+        System.out.println("OUTPUT: " + this.reverse(x));
     }
 
     public static void main(String[] args) {
@@ -55,5 +71,9 @@ public class ReverseInteger {
         reverseInteger.printResult(-5678);
         reverseInteger.printResult(-123000);
         reverseInteger.printResult(0);
+
+        System.out.println("-6%10: " + ((-6)%10));
+        System.out.println("-66%10: " + ((-66)%10));
+        System.out.println("-66/10: " + ((-66)/10));
     }
 }
