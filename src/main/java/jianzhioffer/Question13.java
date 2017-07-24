@@ -37,12 +37,10 @@ public class Question13 {
         if(toBeDeleted.getNext() == null) {
 
             Node p = head;
-            Node pre = null;
-            while(p.getNext() != null) {
-                pre = p;
+            while(p.getNext() != toBeDeleted) {
                 p = p.getNext();
             }
-            pre.setNext(null);
+            p.setNext(null);
             return head;
         }
 
