@@ -44,7 +44,7 @@ public class Question15 {
         return node;
     }
 
-    public static int getValueOfLastKNode(Node head, int k) {
+    public static int getValueOfLastKthNode(Node head, int k) {
 
         Node p = head;
         Node kNode = null;
@@ -65,6 +65,22 @@ public class Question15 {
         }
     }
 
+    public static int getValueOfLastKthNode2(Node head, int k) {
+
+        Node p = head;
+        for(int i=0;i<k-1;i++) { // 移动到第k个
+            p = p.getNext();
+        }
+        Node lastKth = head;
+        
+        while(p.hasNext()) {
+            p = p.getNext();
+            lastKth = lastKth.getNext();
+        }
+        
+        return lastKth.getKey();
+    }
+
     public static void main(String[] args) {
 
         Node head = createAndAppend(1, null);
@@ -73,12 +89,18 @@ public class Question15 {
         Node node4 = createAndAppend(4, node3);
         Node node5 = createAndAppend(5, node4);
 
-        System.out.println(getValueOfLastKNode(head, 1));
-        System.out.println(getValueOfLastKNode(head, 2));
-        System.out.println(getValueOfLastKNode(head, 3));
-        System.out.println(getValueOfLastKNode(head, 4));
-        System.out.println(getValueOfLastKNode(head, 5));
-        System.out.println(getValueOfLastKNode(head, 6));
+        System.out.println(getValueOfLastKthNode(head, 1));
+        System.out.println(getValueOfLastKthNode(head, 2));
+        System.out.println(getValueOfLastKthNode(head, 3));
+        System.out.println(getValueOfLastKthNode(head, 4));
+        System.out.println(getValueOfLastKthNode(head, 5));
+
+
+        System.out.println(getValueOfLastKthNode2(head, 1));
+        System.out.println(getValueOfLastKthNode2(head, 2));
+        System.out.println(getValueOfLastKthNode2(head, 3));
+        System.out.println(getValueOfLastKthNode2(head, 4));
+        System.out.println(getValueOfLastKthNode2(head, 5));
     }
 
 }
