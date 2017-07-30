@@ -37,18 +37,42 @@ public class Question18 {
         }
     }
 
-    public static void mirrorTree(TreeNode root) {
+    public static boolean containsSubTree(TreeNode root1, TreeNode root2) {
 
-        if(root == null || (root.getLeft() ==null && root.getRight() == null)) {
-            return;
+        boolean result = false;
+        if (root1 == null) {
+            return false;
+        } else {
+            if (root1.getValue() == root2.getValue()) {
+                result = compare(root1, root2);
+            }
         }
 
-        TreeNode temp = root.getRight();
-        root.setRight(root.getLeft());
-        root.setLeft(temp);
 
-        mirrorTree(root.getLeft());
-        mirrorTree(root.getRight());
+        if (root1.getLeft() != null) {
+            result = containsSubTree(root1.getLeft(), root2);
+        }
+        if (!result && root1.getRight() != null) {
+            result = containsSubTree(root1.getRight(), root2);
+        }
+        return result;
     }
+
+    private static boolean compare(TreeNode root1, TreeNode root2) {
+
+        if (root2 == null) {
+            return true;
+        }
+        if (root1 == null) {
+            return false;
+        }
+
+        if (root1.getValue() != root2.getValue()) {
+            return false;
+        }
+        return compare(root1.getLeft(), root2.getLeft()) && compare(root1.getRight(), root2.getRight());
+
+    }
+
 
 }

@@ -1,78 +1,89 @@
 package jianzhioffer;
 
 /**
- * date 17/7/18
+ * date 17/7/30
  *
  * @author wenle
  */
 public class Question17 {
 
-    static class TreeNode {
-        int value;
-        TreeNode left;
-        TreeNode right;
+    public static ListNode merge(ListNode head1, ListNode head2) {
 
-        public int getValue() {
-            return value;
+        if (head1 == null) {
+            return head2;
+        } else if (head2 == null) {
+            return head1;
         }
 
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        public TreeNode getLeft() {
-            return left;
-        }
-
-        public void setLeft(TreeNode left) {
-            this.left = left;
-        }
-
-        public TreeNode getRight() {
-            return right;
-        }
-
-        public void setRight(TreeNode right) {
-            this.right = right;
+        if (head1.getKey() <= head2.getKey()) {
+            head1.setNext(merge(head1.getNext(), head2));
+            return head1;
+        } else {
+            head2.setNext(merge(head1, head2.getNext()));
+            return head2;
         }
     }
 
-    public static boolean containsSubTree(TreeNode root1, TreeNode root2) {
+    private static ListNode merge2(ListNode head1, ListNode head2) {
 
-        boolean result = false;
-        if (root1 == null) {
-            return false;
-        } else {
-            if (root1.getValue() == root2.getValue()) {
-                result = compare(root1, root2);
+        if (head1 == null) {
+            return head2;
+        } else if (head2 == null) {
+            return head1;
+        }
+
+        ListNode p1 = head1;
+        ListNode p2 = head2;
+
+        ListNode head = null;
+        ListNode pre = null;
+        while (true) {
+
+            if (p1 == null) {
+                pre.setNext(p2);
+                break;
+            }
+            if (p2 == null) {
+                pre.setNext(p1);
+                break;
+            }
+            ListNode small = (p1.getKey() <= p2.getKey()) ? p1 : p2;
+            if (head == null) {
+                head = small;
+                pre = head;
+            } else {
+                pre.setNext(small);
+                pre = small;
+            }
+
+            if (p1.getKey() <= p2.getKey()) {
+                p1 = p1.getNext();
+            } else {
+                p2 = p2.getNext();
             }
         }
-
-
-        if (root1.getLeft() != null) {
-            result = containsSubTree(root1.getLeft(), root2);
-        }
-        if (!result && root1.getRight() != null) {
-            result = containsSubTree(root1.getRight(), root2);
-        }
-        return result;
+        return head;
     }
 
-    private static boolean compare(TreeNode root1, TreeNode root2) {
 
-        if (root2 == null) {
-            return true;
-        }
-        if (root1 == null) {
-            return false;
-        }
+    public static void main(String[] args) {
 
-        if (root1.getValue() != root2.getValue()) {
-            return false;
-        }
-        return compare(root1.getLeft(), root2.getLeft()) && compare(root1.getRight(), root2.getRight());
 
+        ListNode head1 = new ListNode(1);
+        head1.createAndAppend(3)
+                .createAndAppend(5)
+                .createAndAppend(7)
+                .createAndAppend(9);
+
+
+        ListNode head2 = new ListNode(2);
+        head2.createAndAppend(4)
+                .createAndAppend(6)
+                .createAndAppend(8)
+                .createAndAppend(10);
+
+        ListNode p = merge(head1, head2);
+        p.printList();
     }
-
 
 }
