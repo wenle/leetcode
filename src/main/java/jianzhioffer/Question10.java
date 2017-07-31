@@ -16,7 +16,7 @@ public class Question10 {
             if ((x & y) > 0) {
                 count++;
             }
-            if (y == 0) { // ×óÒÆµ½Í·
+            if (y == 0) { // å·¦ç§»åˆ°å¤´
                 if (x < 0) {
                     count++;
                 }
