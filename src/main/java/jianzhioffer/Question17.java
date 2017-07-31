@@ -15,11 +15,11 @@ public class Question17 {
             return head1;
         }
 
-        if (head1.getKey() <= head2.getKey()) {
-            head1.setNext(merge(head1.getNext(), head2));
+        if (head1.key <= head2.key) {
+            head1.next = merge(head1.next, head2);
             return head1;
         } else {
-            head2.setNext(merge(head1, head2.getNext()));
+            head2.next = merge(head1, head2.next);
             return head2;
         }
     }
@@ -40,26 +40,26 @@ public class Question17 {
         while (true) {
 
             if (p1 == null) {
-                pre.setNext(p2);
+                pre.next = p2;
                 break;
             }
             if (p2 == null) {
-                pre.setNext(p1);
+                pre.next = p1;
                 break;
             }
-            ListNode small = (p1.getKey() <= p2.getKey()) ? p1 : p2;
+            ListNode small = (p1.key <= p2.key) ? p1 : p2;
             if (head == null) {
                 head = small;
                 pre = head;
             } else {
-                pre.setNext(small);
+                pre.next = small;
                 pre = small;
             }
 
-            if (p1.getKey() <= p2.getKey()) {
-                p1 = p1.getNext();
+            if (p1.key <= p2.key) {
+                p1 = p1.next;
             } else {
-                p2 = p2.getNext();
+                p2 = p2.next;
             }
         }
         return head;

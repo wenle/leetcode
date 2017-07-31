@@ -3,32 +3,12 @@ package jianzhioffer;
 /**
  * date 17/7/30
  *
- * @author 柏霜
+ * @author wenle
  */
 public class ListNode {
 
-    int key;
-    ListNode next;
-
-    public boolean hasNext() {
-        return next != null;
-    }
-
-    public int getKey() {
-        return key;
-    }
-
-    public void setKey(int key) {
-        this.key = key;
-    }
-
-    public ListNode getNext() {
-        return next;
-    }
-
-    public void setNext(ListNode next) {
-        this.next = next;
-    }
+    public int key;
+    public ListNode next;
 
     public ListNode(int key) {
         this.key = key;
@@ -36,7 +16,7 @@ public class ListNode {
 
     public ListNode createAndAppend(int key) {
         ListNode newNode = new ListNode(key);
-        this.setNext(newNode);
+        this.next = newNode;
         return newNode;
     }
 
@@ -44,8 +24,8 @@ public class ListNode {
 
         ListNode p = this;
         while (p != null) {
-            System.out.println(p.getKey());
-            p = p.getNext();
+            System.out.println(p.key);
+            p = p.next;
         }
     }
 }
