@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author wenle
  */
-public class Question32 {
+public class Question33 {
 
     public static void printSmallestCombination(List<Integer> nums) {
 
